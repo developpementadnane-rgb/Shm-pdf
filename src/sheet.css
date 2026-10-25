@@ -1,0 +1,52 @@
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: #fff; }
+body { font-family: Tahoma, "Segoe UI", sans-serif; color: #0f172a; }
+
+.sheet {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 16mm 20mm 14mm;
+  page-break-after: always;
+  display: flex;
+  flex-direction: column;
+}
+.sheet:last-child { page-break-after: auto; }
+
+.bar { height: 1.1mm; background: #8B0000; }
+.head { display: flex; align-items: center; justify-content: center; gap: 6mm; margin: 5mm 0; }
+.head img { width: 20mm; height: 20mm; object-fit: contain; }
+.head .txt { flex: 1; text-align: center; line-height: 7.5mm; min-width: 0; }
+.head .t0 { font-size: 4.2mm; font-weight: 700; }
+.head .t1 { font-size: 5mm; font-weight: 900; }
+.head .t2 { font-size: 3.8mm; color: #334155; }
+
+.body { flex: 1; }
+
+.doc-title { text-align: center; font-weight: 900; line-height: 8mm; margin-top: 5mm; }
+h2.doc-title { font-size: 6mm; }
+h3.doc-title { font-size: 4.3mm; color: #5f4a2b; margin-top: 4.5mm; text-align: right; }
+.tbl-title { font-size: 4.3mm; font-weight: 900; color: #5f4a2b; margin-top: 4.5mm; }
+.doc-text { font-size: 3.6mm; line-height: 6.5mm; color: #334155; white-space: pre-wrap; margin-top: 2mm; }
+
+.tbl { margin-top: 2mm; border: 0.25mm solid #d8c9a9; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; text-align: right; }
+tr { border-bottom: 0.2mm solid #d8c9a9; }
+tr:last-child { border-bottom: 0; }
+th, td { padding: 2.6mm 3.5mm; vertical-align: middle; font-size: 3.6mm; }
+.kv th { width: 42mm; white-space: nowrap; background: #f5e6c8; font-weight: 900; color: #5f4a2b; text-align: right; }
+.kv td { text-align: center; color: #334155; white-space: pre-wrap; overflow-wrap: anywhere; }
+table.grid thead th { background: #f5e6c8; font-weight: 900; color: #5f4a2b; text-align: center; }
+table.grid td { text-align: center; color: #334155; }
+
+.foot {
+  margin-top: 6mm;
+  border-top: 0.25mm solid #e2e8f0;
+  padding-top: 3mm;
+  display: flex;
+  justify-content: space-between;
+  gap: 4mm;
+  font-size: 2.8mm;
+  font-weight: 700;
+  color: #94a3b8;
+}

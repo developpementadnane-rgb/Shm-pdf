@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+  أداة مساعدة محلية لإنشاء "CREDENTIALS_HASH" الذي يوضع في src/auth.ts.
+  تُستعمل عند تغيير الرمز السري أو كلمة السر، ثم يمكن تجاهل هذا الملف؛
+  لا علاقة له بالموقع نفسه ولا يُنشر معه.
+-->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>إنشاء رمز الدخول المشفّر</title>
+<style>
+  body { font-family: Tahoma, sans-serif; max-width: 480px; margin: 60px auto; padding: 0 20px; color:#2a2017; }
+  h1 { font-size: 18px; }
+  label { display:block; margin-top:14px; font-size:13px; font-weight:bold; }
+  input { width:100%; padding:8px; margin-top:4px; font-size:14px; box-sizing:border-box; }
+  button { margin-top:18px; padding:10px 18px; font-size:14px; cursor:pointer; }
+  pre { background:#f3e4c3; padding:14px; margin-top:18px; white-space:pre-wrap; word-break:break-all; font-size:12.5px; }
+</style>
+</head>
+<body>
+  <h1>إنشاء CREDENTIALS_HASH لملف src/auth.ts</h1>
+  <label>الرمز السري (PIN)</label>
+  <input id="pin" placeholder="مثال: 0006001100200900">
+  <label>كلمة السر</label>
+  <input id="pwd" type="password">
+  <button onclick="run()">إنشاء</button>
+  <pre id="out"></pre>
+<script>
+async function run() {
+  const pin = document.getElementById('pin').value.trim();
+  const pwd = document.getElementById('pwd').value;
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin + '|' + pwd));
+  const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,'0')).join('');
+  document.getElementById('out').textContent =
+    'const CREDENTIALS_HASH = "' + hex + '";';
+}
+</script>
+</body>
+</html>

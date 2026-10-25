@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap");
+
+:root {
+  --bg: #0f1b14;
+  --bg-deep: #0a130e;
+  --panel: #17261d;
+  --panel-raised: #1d2e22;
+  --thread: #d4a843;
+  --thread-deep: #b4872f;
+  --clay: #8a3b2e;
+  --clay-bright: #a8503f;
+  --ink: #eee8d8;
+  --ink-soft: #a9ab9c;
+  --line: #30432f;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: "Cairo", Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  direction: rtl;
+}
+
+#app { min-height: 100vh; }
+
+/* ---------------------------------------------------------- insigne en filigrane (connexion uniquement) */
+.login-screen {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  position: relative;
+  background:
+    radial-gradient(420px 420px at 50% 38%, rgba(212, 168, 67, 0.07), transparent 70%),
+    var(--bg);
+}
+.login-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 520px;
+  height: 520px;
+  border: 2px dashed rgba(212, 168, 67, 0.14);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 34px 30px 28px;
+  position: relative;
+  z-index: 1;
+}
+.login-card::before {
+  /* point de couture courant tout autour, comme un écusson brodé */
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px dashed rgba(212, 168, 67, 0.35);
+  pointer-events: none;
+}
+
+.login-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--thread);
+}
+
+.login-card h1 {
+  margin: 0 0 22px;
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px; font-size: 13px; font-weight: 700; color: var(--ink-soft); }
+
+.ctl {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg-deep);
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  width: 100%;
+  resize: vertical;
+}
+.ctl::placeholder { color: #5c6457; }
+.ctl:focus { outline: none; border-color: var(--thread); }
+.ctl-pin { letter-spacing: 3px; font-family: "Cairo", monospace; }
+
+.btn-primary {
+  width: 100%;
+  background: var(--thread);
+  color: #241a06;
+  border: none;
+  font: inherit;
+  font-weight: 900;
+  font-size: 14.5px;
+  padding: 12px 16px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+}
+.btn-primary:hover { background: var(--thread-deep); }
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--thread); color: var(--thread); }
+.btn-ghost.small { padding: 6px 11px; font-size: 12.5px; }
+
+.error { color: var(--clay-bright); font-size: 12.5px; font-weight: 700; min-height: 14px; margin: -6px 0 10px; }
+
+/* ---------------------------------------------------------- accueil */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+.topbar-user { font-weight: 800; font-size: 13.5px; color: var(--thread); letter-spacing: 0.3px; }
+
+.home-screen { max-width: 920px; margin: 0 auto; padding: 0 24px 60px; }
+.home-title { text-align: center; font-size: 19px; font-weight: 900; color: var(--ink); margin: 40px 0 26px; }
+
+.tabset {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.tab-card {
+  background: var(--panel);
+  border: none;
+  padding: 24px 20px;
+  text-align: right;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: inherit;
+  position: relative;
+  transition: background 0.15s;
+}
+.tab-card::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--clay);
+  transition: background 0.15s;
+}
+.tab-card:hover { background: var(--panel-raised); }
+.tab-card:hover::before { background: var(--thread); }
+.tab-label { font-size: 16.5px; font-weight: 900; color: var(--ink); }
+.tab-desc { font-size: 12.5px; color: var(--ink-soft); }
+
+/* ---------------------------------------------------------- formulaires */
+
+.form-screen { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+.form-header { display: flex; align-items: center; gap: 14px; padding: 22px 0; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.form-header h1 { font-size: 18px; font-weight: 900; color: var(--ink); margin: 0; }
+
+.fieldset { background: var(--panel); border: 1px solid var(--line); padding: 20px 22px; margin-bottom: 16px; }
+.fieldset h2 {
+  font-size: 13px; font-weight: 800; color: var(--thread);
+  border-bottom: 1px dashed var(--line); padding-bottom: 9px; margin: 0 0 14px;
+  letter-spacing: 0.2px;
+}
+
+.grid-editor { display: flex; flex-direction: column; gap: 8px; }
+.grid-row { display: flex; gap: 8px; align-items: center; }
+.grid-row.grid-head { font-weight: 900; }
+.grid-row .ctl { flex: 1; }
+
+.custom-toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.block-card { border: 1px dashed var(--line); padding: 14px 16px; margin-bottom: 10px; background: var(--bg-deep); }
+.block-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: 800; font-size: 12.5px; color: var(--ink-soft); }
+.custom-page-wrap { margin-bottom: 18px; }
+.custom-page-wrap h2 { font-size: 13.5px; font-weight: 900; color: var(--thread); margin-bottom: 10px; }
+
+.form-actions { position: sticky; bottom: 0; background: linear-gradient(0deg, var(--bg) 65%, transparent); padding: 18px 0; display: flex; justify-content: flex-end; }
+.form-actions .btn-primary { width: auto; min-width: 180px; }
+
+@media (max-width: 560px) {
+  .form-actions .btn-primary { width: 100%; }
+}

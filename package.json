@@ -1,0 +1,8 @@
+{
+  "name": "shm-rapports",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit -p . && esbuild src/main.ts --bundle --minify --format=iife --outfile=dist/app.js"
+  }
+}
